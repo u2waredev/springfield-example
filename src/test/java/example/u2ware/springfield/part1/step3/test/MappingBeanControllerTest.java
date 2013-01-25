@@ -37,34 +37,33 @@ public class MappingBeanControllerTest {
 	//////////////////////////////////////////////////////////
 	//
 	//////////////////////////////////////////////////////////
-	@Test
+	//@Test
 	public void testMappingJson() throws Exception{
 		this.mockMvc.perform(
 				get("/part1/step3.json"))
 			.andExpect(status().isOk());
 	}
 	
-	@Test
+	//@Test
 	public void testMappingXml() throws Exception{
 		this.mockMvc.perform(
 				post("/part1/step3.xml"))
 			.andExpect(status().isOk());
 	}
 	
-	@Test
+	//@Test
 	public void testMappingXls() throws Exception{
 		this.mockMvc.perform(
 				post("/part1/step3.xls"))
 			.andExpect(status().isOk());
 	}
-	
-	/*
 	@Test
 	public void testMappingDo() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step3.do"))
+				get("/part1/step3.xls"))
 			.andExpect(status().isOk());
 	}
+	/*
 	@Test
 	public void testMappingJstl() throws Exception{
 		this.mockMvc.perform(

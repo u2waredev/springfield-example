@@ -11,7 +11,7 @@ import com.u2ware.springfield.config.Springfield;
 
 @Springfield(
 	methodLevelMapping=
-		{"*","*.json","read.xml","read.xls","*.do","*.jstl","*.tiles","*.thymeleaf"})
+		{"*","*.json","findForm.xml","findForm.xls","*.do","*.jstl","*.tiles","*.thymeleaf"})
 @Entity
 public class MappingBean {
 

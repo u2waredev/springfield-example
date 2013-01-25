@@ -85,8 +85,4 @@
 		<include refid="whereSyntax"/>
 	</select>
 
-
-
-
-
 </mapper>

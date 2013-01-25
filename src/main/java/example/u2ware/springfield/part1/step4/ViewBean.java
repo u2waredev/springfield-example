@@ -11,10 +11,11 @@ import com.u2ware.springfield.config.Springfield;
 
 @Springfield(
 	methodLevelMapping=
-		{"*","*.json","read.xml","read.xls","*.do","*.jstl","*.tiles","*.thymeleaf"}, 	
+		{"*","*.json","findForm.xml","findForm.xls","*.do","*.jstl","*.tiles"}, 	
 	attributesCSV=
 		"webmvc.view.method.findForm={custom}," +
-		"webmvc.view.extension.none={jsonView},webmvc.view.extension.do={thymeleafView}")
+		"webmvc.view.extension.none={jsonView}," +
+		"webmvc.view.extension.do={thymeleafView}")
 		//"webmvc.view.springfield={springfield3}"
 @Entity
 public class ViewBean {
