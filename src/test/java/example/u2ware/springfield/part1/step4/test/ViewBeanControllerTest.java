@@ -37,14 +37,21 @@ public class ViewBeanControllerTest {
 	//////////////////////////////////////////////////////////
 	//
 	//////////////////////////////////////////////////////////
-	@Test
+	//@Test
+	public void testMapping() throws Exception{
+		this.mockMvc.perform(
+				get("/part1/step4"))
+			.andExpect(status().isOk());
+	}
+	
+	//@Test
 	public void testMappingJson() throws Exception{
 		this.mockMvc.perform(
 				get("/part1/step4.json"))
 			.andExpect(status().isOk());
 	}
 	
-/*	@Test
+	@Test
 	public void testMappingXml() throws Exception{
 		this.mockMvc.perform(
 				post("/part1/step4.xml"))
@@ -61,35 +68,9 @@ public class ViewBeanControllerTest {
 	@Test
 	public void testMappingDo() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step4.do"))
+				post("/part1/step4.do"))
 			.andExpect(status().isOk());
 	}
-	@Test
-	public void testMappingJstl() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step4.jstl"))
-			.andExpect(status().isOk());
-	}
+
 	
-	@Test
-	public void testMappingTiles() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step4.tiles"))
-			.andExpect(status().isOk());
-	}
-	
-	@Test
-	public void testMappingThymeleaf() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step4.thymeleaf"))
-			.andExpect(status().isOk());
-	}
-	
-	
-	@Test
-	public void testMapping() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step4"))
-			.andExpect(status().isOk());
-	}
-*/}
+}

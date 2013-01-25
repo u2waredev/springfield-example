@@ -50,16 +50,37 @@
 		<include refid="whereSyntax"/>
 	</select>
 
-
+	<select id="search"
+		parameterType="map"
+		resultType="example.u2ware.springfield.part2.step2.MybatisBean">
+		select * from MybatisBean
+		<include refid="whereSyntax"/>
+		<include refid="orderSyntax"/>
+	</select>
+	
+	<select id="searchCount"
+		parameterType="map"
+		resultType="long">
+		select count(*) from MybatisBean
+		<include refid="whereSyntax"/>
+	</select>
+	
 	<sql id="whereSyntax">
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-			<if test="query.id != null"> and id = #{query.id}</if>
-			<if test="query.password != null">and password = #{query.password}</if>
+			<if test="query.id != null">
+				and id = #{query.id}
+			</if>
+			<if test="query.password != null">
+				and password = #{query.password}
+			</if>
 		</trim>
 	</sql>
+	
 	<sql id="orderSyntax">
 		<trim prefix="order by" prefixOverrides=", ">
-			<foreach item="item" index="index" collection="pageable.sortOrders">
+			<foreach item="item"
+				index="index"
+				collection="pageable.sortOrders">
 				<if test="item.direction == 1">
 					, ${item.property} asc
 				</if>
@@ -69,20 +90,4 @@
 			</foreach>
 		</trim>
 	</sql>
-
-	<select id="search" 
-		parameterType="map" 
-		resultType="example.u2ware.springfield.part2.step2.MybatisBean">
-		select * from MybatisBean
-		<include refid="whereSyntax"/>
-		<include refid="orderSyntax"/>
-	</select>
-
-	<select id="searchCount" 
-		parameterType="map"
-		resultType="long">
-		select count(*) from MybatisBean 
-		<include refid="whereSyntax"/>
-	</select>
-
 </mapper>

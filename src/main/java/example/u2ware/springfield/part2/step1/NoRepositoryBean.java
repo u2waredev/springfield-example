@@ -1,25 +1,21 @@
 package example.u2ware.springfield.part2.step1;
 
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import org.springframework.data.annotation.Id;
-
 import com.u2ware.springfield.config.Springfield;
 import com.u2ware.springfield.config.Springfield.Type;
+import com.u2ware.springfield.config.SpringfieldId;
 
 @Springfield(type=Type.NONE)
 public @ToString @NoArgsConstructor @AllArgsConstructor class NoRepositoryBean {
 
-	@Id @NotNull
+	@SpringfieldId
 	private @Getter @Setter String id;
 
-	@NotNull
 	private @Getter @Setter String password;
 	
 	private @Getter @Setter String contry;

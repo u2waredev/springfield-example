@@ -1,7 +1,6 @@
 package example.u2ware.springfield.part2.step2;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,10 +14,9 @@ import com.u2ware.springfield.config.Springfield.Type;
 @Springfield(type=Type.SQLSESSION)
 public @ToString @NoArgsConstructor @AllArgsConstructor class MybatisBean {
 
-	@Id @NotNull
+	@Id
 	private @Getter @Setter String id;
 
-	@NotNull
 	private @Getter @Setter String password;
 	
 	private @Getter @Setter String contry;

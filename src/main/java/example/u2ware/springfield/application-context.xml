@@ -41,10 +41,10 @@
 	#############################################################
 	# initialize database
 	#############################################################
-	<jdbc:initialize-database data-source="#{prop['baseDatasource']}">
-	<jdbc:script location="classpath:example/u2ware/springfield/application-context.ddl"/>
-	</jdbc:initialize-database>
 	-->
+	<jdbc:initialize-database data-source="#{prop['baseDatasource']}">
+		<jdbc:script location="classpath:example/u2ware/springfield/application-context.ddl"/>
+	</jdbc:initialize-database>
 
 	<!-- 
 	#############################################################
