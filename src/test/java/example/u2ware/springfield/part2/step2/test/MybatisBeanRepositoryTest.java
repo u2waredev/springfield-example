@@ -59,4 +59,18 @@ public class MybatisBeanRepositoryTest {
 		Assert.assertEquals(1 , page.getTotalElements());
 		Assert.assertEquals("id7", page.getContent().get(0).getId().trim());
 	}
+	
+	@Test
+	@Transactional
+	public void testRead() throws Exception{
+
+		MybatisBean param = new MybatisBean();
+		param.setId("id7");
+		
+		MybatisBean page = mybatisBeanRepository.read(param);
+		
+		logger.debug(page);
+		
+		
+	}
 }

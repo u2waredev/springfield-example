@@ -21,7 +21,7 @@
 	<select id="read" 
 		parameterType="example.u2ware.springfield.part2.step2.MybatisBean" 
 		resultType="example.u2ware.springfield.part2.step2.MybatisBean">
-		select count(id) from 	MybatisBean 
+		select * from MybatisBean 
 		where id = #{id}
 	</select>
 
