@@ -1,8 +1,11 @@
 package example.u2ware.springfield.part2.step3.test;
 
 
+import junit.framework.Assert;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,29 +32,32 @@ public class JpaBeanRepositoryTest {
 
 	@Autowired @Qualifier("jpaBeanRepository")
 	private EntityRepository<JpaBean,Integer> hibernateBeanRepository;
+
+	@Before
+	@Transactional
+	public void before() throws Exception{
+		for(int i = 0 ; i < 10 ; i++){
+			hibernateBeanRepository.createOrUpdate(new JpaBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
+		}
+	}
+	
+	
 	
 	@Test
 	@Transactional
-	public void testWhereAndPagingAndOrdring() throws Exception{
+	public void testWhere() throws Exception{
 		
-		try{
-			for(int i = 0 ; i < 10 ; i++){
-				hibernateBeanRepository.create(new JpaBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-
 		EntityPageRequest pageable = new EntityPageRequest();
-		pageable.setPageNumber(0);
-		pageable.setPageSize(2);
-		pageable.addSortOrder("address", -1);
 		
 		JpaBeanQuery param = new JpaBeanQuery();
-		//param.setId("id7");
+		param.setId("id7");
 		
-		Page<JpaBean> entityPage = hibernateBeanRepository.findAll(param, pageable);
-		logger.debug(entityPage.getContent());
+		Page<JpaBean> page = hibernateBeanRepository.findAll(param, pageable);
+		logger.debug(page.getTotalElements());
+		logger.debug(page.getContent());
+		
+		Assert.assertEquals(1 , page.getTotalElements());
+		Assert.assertEquals("id7", page.getContent().get(0).getId().trim());
 	}
 	
 }

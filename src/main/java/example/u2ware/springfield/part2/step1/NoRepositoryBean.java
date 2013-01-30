@@ -7,10 +7,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 import com.u2ware.springfield.config.Springfield;
-import com.u2ware.springfield.config.Springfield.Type;
+import com.u2ware.springfield.config.Springfield.Repository;
 import com.u2ware.springfield.config.SpringfieldId;
 
-@Springfield(type=Type.NONE)
+@Springfield(repository=Repository.NONE)
 public @ToString @NoArgsConstructor @AllArgsConstructor class NoRepositoryBean {
 
 	@SpringfieldId

@@ -1,6 +1,8 @@
 package example.u2ware.springfield.part2.step4.test;
 
 
+import junit.framework.Assert;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.After;
@@ -30,44 +32,44 @@ public class MongodbBeanRepositoryTest {
 	protected final Log logger = LogFactory.getLog(getClass());
 
 
-	@Autowired @Qualifier("mongodbBeanRepository")
-	private EntityRepository<MongodbBean,Integer> mongodbBeanRepository;
-
-	@Test
-	@Transactional
-	public void testWhereAndPagingAndOrdring() throws Exception{
-
-		try{
-			for(int i = 0 ; i < 10 ; i++){
-				mongodbBeanRepository.create(new MongodbBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-
-		EntityPageRequest pageable = new EntityPageRequest();
-		pageable.setPageNumber(0);
-		pageable.setPageSize(2);
-		pageable.addSortOrder("address", -1);
-		
-		MongodbBeanQuery param = new MongodbBeanQuery();
-		//param.setId("id7");
-
-		Page<MongodbBean> entityPage = mongodbBeanRepository.findAll(param, pageable);
-		logger.debug(entityPage.getContent());
-	}
-	
 	@Autowired
 	private MongoOperations mongoOperations;
 
+	@Autowired @Qualifier("mongodbBeanRepository")
+	private EntityRepository<MongodbBean,Integer> mongodbBeanRepository;
 
 	@Before
-	public void beforeMongoOperations() throws Exception {
+	@Transactional
+	public void before() throws Exception{
 		mongoOperations.dropCollection(MongodbBean.class);
 		logger.debug(mongoOperations.findAll(MongodbBean.class).size());
+		for(int i = 0 ; i < 10 ; i++){
+			mongodbBeanRepository.createOrUpdate(new MongodbBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
+		}
 	}
+	
 	@After
+	@Transactional
 	public void afterMongoOperations() throws Exception {
 		mongoOperations.dropCollection(MongodbBean.class);
 	}
+	
+	@Test
+	@Transactional
+	public void testWhere() throws Exception{
+
+		EntityPageRequest pageable = new EntityPageRequest();
+		
+		MongodbBeanQuery param = new MongodbBeanQuery();
+		param.setId("id7");
+
+		Page<MongodbBean> page = mongodbBeanRepository.findAll(param, pageable);
+		logger.debug(page.getTotalElements());
+		logger.debug(page.getContent());
+		
+		Assert.assertEquals(1 , page.getTotalElements());
+		Assert.assertEquals("id7", page.getContent().get(0).getId().trim());
+	}
+	
+
 }

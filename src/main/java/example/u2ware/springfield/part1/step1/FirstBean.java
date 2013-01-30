@@ -6,10 +6,11 @@ import lombok.Setter;
 import com.u2ware.springfield.config.Springfield;
 import com.u2ware.springfield.config.SpringfieldId;
 
+
 @Springfield
 public class FirstBean {
 
-	@SpringfieldId 
+	@SpringfieldId
 	private @Getter @Setter Integer code;
 	
 	private @Getter @Setter String name;

@@ -6,7 +6,7 @@ import lombok.Setter;
 import com.u2ware.springfield.config.Springfield;
 import com.u2ware.springfield.repository.QueryMethod;
 
-@Springfield(entity=MybatisBean.class)
+@Springfield(entity=MybatisBean.class, identity={"id"})
 @QueryMethod("search")
 public class MybatisBeanQuery {
 

@@ -7,18 +7,18 @@
 		xmlns:util="http://www.springframework.org/schema/util"
 		xmlns:springfield="http://www.u2ware.com/schema/springfield"
 		xsi:schemaLocation="
-				http://www.springframework.org/schema/beans 
-				http://www.springframework.org/schema/beans/spring-beans.xsd
-				http://www.springframework.org/schema/context 
-				http://www.springframework.org/schema/context/spring-context.xsd
-				http://www.springframework.org/schema/mvc 
-				http://www.springframework.org/schema/mvc/spring-mvc.xsd
-				http://www.springframework.org/schema/jdbc 
-				http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-				http://www.springframework.org/schema/util 
-				http://www.springframework.org/schema/util/spring-util.xsd
-				http://www.u2ware.com/schema/springfield 
-				http://www.u2ware.com/schema/springfield/u2ware-springfield.xsd">
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			http://www.springframework.org/schema/jdbc 
+			http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+			http://www.springframework.org/schema/util 
+			http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.u2ware.com/schema/springfield 
+			http://www.u2ware.com/schema/springfield/u2ware-springfield.xsd">
 
 	<!-- 
 	#############################################################
@@ -26,13 +26,13 @@
 	#############################################################
 	-->
 	<util:properties id="prop" 
-	location="classpath:example/u2ware/springfield/application-context.properties"/>
+		location="classpath:example/u2ware/springfield/application-context.properties"/>
 
 	<import resource="classpath:com/u2ware/springfield/context-datasource-hsql.xml"/>
-	<import resource="classpath:com/u2ware/springfield/context-datasource-c3p0.xml"/>		
+	<import resource="classpath:com/u2ware/springfield/context-datasource-c3p0.xml"/>     
 	<import resource="classpath:com/u2ware/springfield/context-orm-jpa.xml"/> 
 	<import resource="classpath:com/u2ware/springfield/context-orm-mongodb.xml"/>
-	<import resource="classpath:com/u2ware/springfield/context-orm-sqlsession.xml"/>		
+	<import resource="classpath:com/u2ware/springfield/context-orm-sqlsession.xml"/>      
 	<import resource="classpath:com/u2ware/springfield/context-webmvc-multipart.xml"/>
 	<import resource="classpath:com/u2ware/springfield/context-webmvc-view.xml"/>
 	<import resource="classpath:com/u2ware/springfield/context-webmvc.xml"/>
@@ -58,5 +58,7 @@
 	# springfield auto beans
 	#############################################################
 	-->
-	<springfield:modules base-package="example.u2ware.springfield" default-repository-type="NONE" />
+	<springfield:modules base-package="example.u2ware.springfield" 
+		default-repository-type="NONE" />         
+
 </beans>

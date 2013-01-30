@@ -9,9 +9,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import com.u2ware.springfield.config.Springfield;
-import com.u2ware.springfield.config.Springfield.Type;
+import com.u2ware.springfield.config.Springfield.Repository;
 
-@Springfield(type=Type.SQLSESSION)
+@Springfield(repository=Repository.SQLSESSION)
 public @ToString @NoArgsConstructor @AllArgsConstructor class MybatisBean {
 
 	@Id

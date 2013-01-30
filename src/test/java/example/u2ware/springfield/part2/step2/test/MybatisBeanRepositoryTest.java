@@ -1,8 +1,11 @@
 package example.u2ware.springfield.part2.step2.test;
 
 
+import junit.framework.Assert;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,28 +33,30 @@ public class MybatisBeanRepositoryTest {
 	@Autowired @Qualifier("mybatisBeanRepository")
 	private EntityRepository<MybatisBean,Integer> mybatisBeanRepository;
 	
+	@Before
+	@Transactional
+	public void before() throws Exception{
+		for(int i = 0 ; i < 10 ; i++){
+			mybatisBeanRepository.createOrUpdate(new MybatisBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
+		}
+	}
+
+	
+	
 	@Test
 	@Transactional
-	public void testWhereAndPagingAndOrdring() throws Exception{
-
-		try{
-			for(int i = 0 ; i < 10 ; i++){
-				mybatisBeanRepository.create(new MybatisBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	public void testWhere() throws Exception{
 
 		EntityPageRequest pageable = new EntityPageRequest();
-		pageable.setPageNumber(0);
-		pageable.setPageSize(2);
-		pageable.addSortOrder("address", -1);
-		
+
 		MybatisBeanQuery param = new MybatisBeanQuery();
 		param.setId("id7");
 		
-		Page<MybatisBean> entityPage = mybatisBeanRepository.findAll(param, pageable);
-		logger.debug(entityPage.getContent());
+		Page<MybatisBean> page = mybatisBeanRepository.findAll(param, pageable);
+		logger.debug(page.getTotalElements());
+		logger.debug(page.getContent());
+		
+		Assert.assertEquals(1 , page.getTotalElements());
+		Assert.assertEquals("id7", page.getContent().get(0).getId().trim());
 	}
-	
 }

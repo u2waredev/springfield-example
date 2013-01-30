@@ -10,9 +10,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import com.u2ware.springfield.config.Springfield;
-import com.u2ware.springfield.config.Springfield.Type;
+import com.u2ware.springfield.config.Springfield.Repository;
 
-@Springfield(type=Type.JPA)
+@Springfield(repository=Repository.JPA)
 @Entity
 public @ToString @NoArgsConstructor @AllArgsConstructor  class JpaBean {
 

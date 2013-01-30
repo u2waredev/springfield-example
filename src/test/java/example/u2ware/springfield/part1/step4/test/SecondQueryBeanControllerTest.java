@@ -1,6 +1,7 @@
 package example.u2ware.springfield.part1.step4.test;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.apache.commons.logging.Log;
@@ -19,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations="classpath:example/u2ware/springfield/application-context.xml")
-public class ViewBeanControllerTest {
+public class SecondQueryBeanControllerTest {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -37,40 +38,17 @@ public class ViewBeanControllerTest {
 	//////////////////////////////////////////////////////////
 	//
 	//////////////////////////////////////////////////////////
-	//@Test
-	public void testMapping() throws Exception{
+	@Test
+	public void testCreate() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step4"))
-			.andExpect(status().isOk());
-	}
-	
-	//@Test
-	public void testMappingJson() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step4.json"))
+				post("/part1/step42/new").param("code", "19").param("name", "springfield"))
 			.andExpect(status().isOk());
 	}
 	
 	@Test
-	public void testMappingXml() throws Exception{
+	public void testRead() throws Exception{
 		this.mockMvc.perform(
-				post("/part1/step4.xml"))
+				get("/part1/step42/{code}" , "19"))
 			.andExpect(status().isOk());
 	}
-	
-	@Test
-	public void testMappingXls() throws Exception{
-		this.mockMvc.perform(
-				post("/part1/step4.xls"))
-			.andExpect(status().isOk());
-	}
-	
-	@Test
-	public void testMappingDo() throws Exception{
-		this.mockMvc.perform(
-				post("/part1/step4.do"))
-			.andExpect(status().isOk());
-	}
-
-	
 }

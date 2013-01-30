@@ -1,4 +1,4 @@
-package example.u2ware.springfield.part1.step3.test;
+package example.u2ware.springfield.part1.step2.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,50 +38,36 @@ public class MappingBeanControllerTest {
 	//
 	//////////////////////////////////////////////////////////
 	@Test
+	public void testMapping() throws Exception{
+		this.mockMvc.perform(
+				post("/part1/step2"))
+			.andExpect(status().isOk());
+	}
+	@Test
 	public void testMappingJson() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step3.json"))
-			.andExpect(status().isOk());
-	}
-	
-	@Test
-	public void testMappingXml() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step3.xml"))
-			.andExpect(status().isOk());
-	}
-	
-	@Test
-	public void testMappingXls() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step3.xls"))
+				post("/part1/step2.json"))
 			.andExpect(status().isOk());
 	}
 	
 	@Test
 	public void testMappingDo() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step3.do"))
-			.andExpect(status().isOk());
-	}
-	@Test
-	public void testMappingJstl() throws Exception{
-		this.mockMvc.perform(
-				get("/part1/step3.jstl"))
+				post("/part1/step2.do"))
 			.andExpect(status().isOk());
 	}
 	
 	@Test
-	public void testMappingTiles() throws Exception{
+	public void testMappingXml() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step3.tiles"))
+				post("/part1/step2.xml"))
 			.andExpect(status().isOk());
 	}
 	
 	@Test
-	public void testMapping() throws Exception{
+	public void testMappingXls() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step3"))
+				post("/part1/step2.xls"))
 			.andExpect(status().isOk());
 	}
 }

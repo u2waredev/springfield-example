@@ -1,8 +1,11 @@
 package example.u2ware.springfield.part2.step3.test;
 
 
+import junit.framework.Assert;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,34 +28,42 @@ public class JpaBeanServiceTest {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
-
-	@Autowired @Qualifier("jpaBeanService")
+	
+	@Before
+	public void before() throws Exception{
+		for(int i = 0 ; i < 10 ; i++){
+			try{
+				hibernateBeanService.create(new JpaBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
+			}catch(Exception e){
+				
+			}
+		}
+	}
+	
+	
+	////////////////////////////////
+	//
+	////////////////////////////////
+	@Autowired @Qualifier("jpaBeanQueryService")
 	private EntityService<JpaBean,JpaBeanQuery> hibernateBeanService;
 	
 	@Test
-	public void testWhereAndPagingAndOrdring() throws Exception{
+	public void testOrdring() throws Exception{
 		
-		try{
-			for(int i = 0 ; i < 10 ; i++){
-				hibernateBeanService.create(new JpaBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-
 		EntityPageRequest pageable = new EntityPageRequest();
-		pageable.setPageNumber(0);
-		pageable.setPageSize(2);
-		pageable.addSortOrder("address", -1);
+		pageable.addSortOrder("address", 1);
 		
 		JpaBeanQuery request = new JpaBeanQuery();
-		//request.setId("id7");
 		
-		@SuppressWarnings("unchecked")
-		EntityPage<JpaBean> result = (EntityPage<JpaBean>)hibernateBeanService.find(request, pageable);
-		logger.debug(result.getTotalElements());
-		logger.debug(result.getTotalPages());
-		logger.debug(result.getContent());
+		EntityPage<JpaBean> entityPage = hibernateBeanService.find(request, pageable);
+		logger.debug(entityPage.getTotalElements());
+		logger.debug(entityPage.getTotalPages());
+		logger.debug(entityPage.getContent().size());
+		logger.debug(entityPage.getContent());
+		
+		Assert.assertEquals(10 , entityPage.getTotalElements());
+		Assert.assertEquals("id9", entityPage.getContent().get(0).getId().trim());
+	
 	}
 	
 }

@@ -10,9 +10,9 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
 import com.u2ware.springfield.config.Springfield;
-import com.u2ware.springfield.config.Springfield.Type;
+import com.u2ware.springfield.config.Springfield.Repository;
 
-@Springfield(type=Type.MONGODB)
+@Springfield(repository=Repository.MONGODB)
 public @ToString @NoArgsConstructor @AllArgsConstructor class MongodbBean {
 
 	@Id

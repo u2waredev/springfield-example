@@ -5,15 +5,16 @@
 			<Pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} # %method [%line] - %msg%n</Pattern>
 		</layout>
 	</appender>
-	
+
+
 	<logger name="org.springframework" level="OFF" />
 	<logger name="org.hibernate" level="OFF" />
 	<logger name="org.mybatis" level="OFF" />
 	<logger name="org.thymeleaf" level="OFF" />
 	<logger name="com.u2ware.springfield" level="DEBUG" />
-	
+
 	<logger name="example.u2ware.springfield" level="DEBUG" />
-	
+
 	<root level="OFF">
 		<appender-ref ref="STDOUT" />
 	</root>

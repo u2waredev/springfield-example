@@ -1,4 +1,4 @@
-package example.u2ware.springfield.part1.step2.test;
+package example.u2ware.springfield.part1.step4.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations="classpath:example/u2ware/springfield/application-context.xml")
-public class SampleBeanFirstQueryControllerTest {
+public class FirstQueryBeanControllerTest {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -38,14 +38,14 @@ public class SampleBeanFirstQueryControllerTest {
 	@Test
 	public void testCreate() throws Exception{
 		this.mockMvc.perform(
-				post("/part1/step21/new").param("code", "19").param("name", "springfield"))
+				post("/part1/step41/new").param("code", "19").param("name", "springfield"))
 			.andExpect(status().isOk());
 	}
 	
 	@Test
 	public void testRead() throws Exception{
 		this.mockMvc.perform(
-				get("/part1/step21/{code}" , "19"))
+				get("/part1/step41/{code}" , "19"))
 			.andExpect(status().isOk());
 	}
 	
