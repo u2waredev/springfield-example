@@ -33,7 +33,7 @@ public class JpaBeanServiceTest {
 	public void before() throws Exception{
 		for(int i = 0 ; i < 10 ; i++){
 			try{
-				hibernateBeanService.create(new JpaBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
+				hibernateBeanService.create(new JpaBean("pwd"+i, "korea", "addr-"+(10-i)));
 			}catch(Exception e){
 				
 			}
@@ -60,9 +60,10 @@ public class JpaBeanServiceTest {
 		logger.debug(entityPage.getTotalPages());
 		logger.debug(entityPage.getContent().size());
 		logger.debug(entityPage.getContent());
+		logger.debug(entityPage.getContent().get(0).getId());
 		
 		Assert.assertEquals(10 , entityPage.getTotalElements());
-		Assert.assertEquals("id9", entityPage.getContent().get(0).getId().trim());
+		Assert.assertEquals(new Integer(10), entityPage.getContent().get(0).getId());
 	
 	}
 	

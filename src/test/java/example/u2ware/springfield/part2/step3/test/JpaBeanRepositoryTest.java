@@ -37,7 +37,7 @@ public class JpaBeanRepositoryTest {
 	@Transactional
 	public void before() throws Exception{
 		for(int i = 0 ; i < 10 ; i++){
-			hibernateBeanRepository.createOrUpdate(new JpaBean("id"+i , "pwd"+i, "korea", "addr-"+(10-i)));
+			hibernateBeanRepository.createOrUpdate(new JpaBean( "pwd"+i, "korea", "addr-"+(10-i)));
 		}
 	}
 	
@@ -50,14 +50,14 @@ public class JpaBeanRepositoryTest {
 		EntityPageRequest pageable = new EntityPageRequest();
 		
 		JpaBeanQuery param = new JpaBeanQuery();
-		param.setId("id7");
+		param.setId(7);
 		
 		Page<JpaBean> page = hibernateBeanRepository.findAll(param, pageable);
 		logger.debug(page.getTotalElements());
 		logger.debug(page.getContent());
 		
 		Assert.assertEquals(1 , page.getTotalElements());
-		Assert.assertEquals("id7", page.getContent().get(0).getId().trim());
+		Assert.assertEquals(new Integer(7), page.getContent().get(0).getId());
 	}
 	
 }

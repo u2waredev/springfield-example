@@ -35,7 +35,6 @@ public class JpaBeanQueryControllerTest {
 		for(int i = 0 ; i < 10 ; i++){
 			this.mockMvc.perform(
 					post("/part2/step3/new")
-					.param("id", "id"+i)
 					.param("password", "pwd"+i)
 					.param("contry", "korea")
 					.param("address", "addr-"+(10-i)))

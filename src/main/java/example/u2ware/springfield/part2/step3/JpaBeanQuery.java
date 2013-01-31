@@ -11,7 +11,7 @@ import com.u2ware.springfield.repository.QueryMethod;
 @QueryMethod("findByIdAndPassword")
 public @ToString class JpaBeanQuery {
 	
-	private @Getter @Setter String id;
+	private @Getter @Setter Integer id;
 	private @Getter @Setter String password;
 	
 }
