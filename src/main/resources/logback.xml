@@ -8,14 +8,15 @@
 
 
 	<logger name="org.springframework" level="OFF" />
+	<logger name="org.springframework.data" level="OFF" />
 	<logger name="org.hibernate" level="OFF" />
 	<logger name="org.mybatis" level="OFF" />
 	<logger name="org.thymeleaf" level="OFF" />
-	<logger name="com.u2ware.springfield" level="DEBUG" />
 
-	<logger name="example.u2ware.springfield" level="DEBUG" />
+	<logger name="example.u2ware" level="DEBUG" />
 
 	<root level="OFF">
 		<appender-ref ref="STDOUT" />
 	</root>
+	
 </configuration>

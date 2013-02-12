@@ -4,14 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.u2ware.springfield.config.Springfield;
-import com.u2ware.springfield.config.SpringfieldId;
+import com.u2ware.springfield.config.Springfield.Strategy;
 
-
-@Springfield
+@Springfield(
+	strategy=Strategy.DTO, 
+	identity={"code"}
+)
 public class FirstBean {
-
-	@SpringfieldId
-	private @Getter @Setter Integer code;
 	
+	private @Getter @Setter Integer code;
 	private @Getter @Setter String name;
+	
 }

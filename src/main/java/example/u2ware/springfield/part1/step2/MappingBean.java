@@ -4,16 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.u2ware.springfield.config.Springfield;
-import com.u2ware.springfield.config.SpringfieldId;
+import com.u2ware.springfield.config.Springfield.Strategy;
 
 @Springfield(
-		methodLevelMapping=
-			{"*","*.json","*.do","find.xml","find.xls"})
+	strategy=Strategy.DTO, 
+	methodLevelMapping={
+		"*","*.do",
+		"findForm.json","findForm.xml","findForm.xls",
+		"read.json","read.xml","read.xls"
+	},
+	identity={"code"}
+)
 public class MappingBean {
 
-	@SpringfieldId
 	private @Getter @Setter Integer code;
-	
 	private @Getter @Setter String name;
-	
 }

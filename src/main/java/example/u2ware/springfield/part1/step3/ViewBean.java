@@ -4,21 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.u2ware.springfield.config.Springfield;
-import com.u2ware.springfield.config.SpringfieldId;
+import com.u2ware.springfield.config.Springfield.Strategy;
 
 @Springfield(
-	methodLevelMapping=
-		{"*","*.json","*.do","find.xml","find.xls"}, 	
+	strategy=Strategy.DTO,
+	methodLevelMapping={
+		"*","*.do",
+		"findForm.json","findForm.xml","findForm.xls",
+		"read.json","read.xml","read.xls"
+	},
+	identity={"code"},
 	attributesCSV=
-		"webmvc.view.method.find={custom}," +
-		"webmvc.view.extension.none={jsonView}," +
-		"webmvc.view.extension.do={thymeleafView}")
+		"webmvc.view.method.findForm={custom}," +
+		"webmvc.view.extension.none={jstlView}," +
+		"webmvc.view.extension.do={thymeleafView}"
 		//"webmvc.view.springfield={springfield3}"
+)
 public class ViewBean {
 
-	@SpringfieldId
 	private @Getter @Setter Integer code;
-	
 	private @Getter @Setter String name;
-	
 }
